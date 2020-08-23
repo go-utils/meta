@@ -115,16 +115,14 @@ func SearchMetaProperties(fields []*Field) ([]*Field, string, error) {
 			RequireType: "time.Time",
 		},
 		"CreatedBy": {
-			Require:     false,
-			RequireType: "string",
+			Require: false,
 		},
 		"UpdatedAt": {
 			Require:     true,
 			RequireType: "time.Time",
 		},
 		"UpdatedBy": {
-			Require:     false,
-			RequireType: "string",
+			Require: false,
 		},
 		"DeletedAt": {
 			Require:          true,
@@ -132,8 +130,7 @@ func SearchMetaProperties(fields []*Field) ([]*Field, string, error) {
 			RequireIsPointer: true,
 		},
 		"DeletedBy": {
-			Require:     false,
-			RequireType: "string",
+			Require: false,
 		},
 		"Version": {
 			Require:     true,
@@ -179,7 +176,7 @@ func SearchMetaProperties(fields []*Field) ([]*Field, string, error) {
 		if !t.Find && t.Require {
 			return nil, "", xerrors.Errorf("%s is require", filedName)
 		}
-		if t.Find && t.RequireType != t.FindType {
+		if t.Find && t.RequireType != "" && t.RequireType != t.FindType {
 			return nil, "", xerrors.Errorf("%s must be type %s", filedName, t.RequireType)
 		}
 		if t.Find && t.RequireIsPointer != t.FindIsPointer {
